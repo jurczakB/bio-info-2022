@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 
-def open_data(train_path='./data/ClassificationFeuilleArbre/train.csv', test_path='./data/ClassificationFeuilleArbre/test.csv'):
+def open_data(train_path='./data/train.csv', test_path='./data/test.csv'):
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
     return train_df, test_df
@@ -43,13 +43,12 @@ class GestionDonnees:
         self.train_df, self.test_df = open_data()
 
     def prepocess(self):
-        coder = LabelEncoder().fit(self.train_df.species)
-        self.labels = coder.transform(self.train_df.species)
+        coder = LabelEncoder().fit(self.train_df.etiquette)
+        self.labels = coder.transform(self.train_df.etiquette)
         self.classes = list(coder.classes_)
-        #test_ids = test_df.id
 
-        self.train_df = self.train_df.drop(['id', 'species'], axis=1)
-        self.test_df = self.test_df.drop(['id'], axis=1)
+        self.train_df = self.train_df
+        self.test_df = self.test_df
 
     def stratifiedSelection(self):
         split = StratifiedShuffleSplit(
