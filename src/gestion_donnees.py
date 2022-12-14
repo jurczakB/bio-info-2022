@@ -5,7 +5,7 @@ from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 
-def open_data(train_path='./data/train.csv', test_path='./data/test.csv'):
+def open_data(train_path='../data/train.csv', test_path='../data/test.csv'):
     train_df = pd.read_csv(train_path)
     test_df = pd.read_csv(test_path)
     return train_df, test_df
@@ -47,19 +47,19 @@ class GestionDonnees:
         self.labels = coder.transform(self.train_df.etiquette)
         self.classes = list(coder.classes_)
 
-        self.train_df = self.train_df
-        self.test_df = self.test_df
+        self.train_df = self.train_df.drop(['etiquette'], axis=1)
+        
 
     def stratifiedSelection(self):
-        split = StratifiedShuffleSplit(
-            n_splits=10, test_size=0.2, random_state=42)
+        # split = StratifiedShuffleSplit(
+        #     n_splits=10, test_size=0.2, random_state=42)
 
-        for train_index, test_index in split.split(self.train_df, self.labels):
-            self.x_train, self.x_test = self.train_df.values[
-                train_index], self.train_df.values[test_index]
-            self.y_train, self.y_test = self.labels[train_index], self.labels[test_index]
+        # for train_index, test_index in split.split(self.train_df, self.labels):
+        #     self.x_train, self.x_test = self.train_df.values[
+        #         train_index], self.train_df.values[test_index]
+        #     self.y_train, self.y_test = self.labels[train_index], self.labels[test_index]
 
-        #self.x_train, self.x_test, self.y_train, self.y_test=train_test_split(self.train_df,self.labels,test_size=0.20,shuffle=True,stratify=self.labels)
+        self.x_train, self.x_test, self.y_train, self.y_test=train_test_split(self.train_df,self.labels,test_size=0.20,shuffle=True)
         self.normalize()
 
     def normalize(self):
