@@ -13,7 +13,6 @@ Voici la composition du dépôt:
     pour motif et 1 pour non motif.
 
 - Le dossier 'src' contient notre code source:
-
   -Les dossiers controllers, methods et visualizers contiennent les fichiers python qui permettent d'implémenter les modèles et de visualiser leurs résultats.
   -Le fichier 'gestion_donnees.py' permet de bien organiser notre base de données: prendre 80% de l'ensemble de départ pour le'entraînement et 20% pour les tests.
   -Le fichier 'loader_fasta_ipynb' est un Jupyter Notebook dont l'exécution successive des cellules va permettre la création de l'ensemble d'entraînement. C'est ici qu'on 
