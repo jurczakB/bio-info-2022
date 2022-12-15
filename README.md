@@ -14,6 +14,9 @@ Voici la composition du dépôt:
 
 - Le dossier 'src' contient notre code source:
   -Les dossiers controllers, methods et visualizers contiennent les fichiers python qui permettent d'implémenter les modèles et de visualiser leurs résultats,
+  
   -Le fichier 'gestion_donnees.py' permet de bien organiser notre base de données: prendre 80% de l'ensemble de départ pour le'entraînement et 20% pour les tests,
+  
   -Le fichier 'loader_fasta_ipynb' est un Jupyter Notebook dont l'exécution successive des cellules va permettre la création de l'ensemble d'entraînement. C'est ici        qu'on retrouve les fonctions qui sélectionnent des séquences motifs et des séquences non-motifs à insérer en base de données pour le futur entraînement,
-  -Le fichier 'main.py' qui va permettre de lancer les modèles. Son exécution accompagnée du numéro de modèle choisi et du choix des hyperparamètres du modèle va    permettre de lancer le modèle. Par exemple, la commande ./src/main.py 1 1 dans le terminal la méthode de classification par Support Vector Machine avec une recherche d'hyperparamètres optimaux (car on a mis un '1' en deuxième argument, un '0' lance le modèle avec les paramètres par défaut).
+  
+  -Le fichier 'main.py' qui va permettre de lancer les modèles. Son exécution accompagnée du numéro de modèle choisi et du choix des hyperparamètres du modèle va permettre de lancer le modèle. Par exemple, la commande ./src/main.py 1 1 dans le terminal la méthode de classification par Support Vector Machine avec une recherche d'hyperparamètres optimaux (car on a mis un '1' en deuxième argument, un '0' lance le modèle avec les paramètres par défaut).
