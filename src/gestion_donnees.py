@@ -4,11 +4,10 @@ import pandas as pd
 from sklearn.model_selection import StratifiedShuffleSplit, train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-
-def open_data(train_path='../data/train.csv', test_path='../data/test.csv'):
+#Si sur mac : train_path='../data/train.csv'
+def open_data(train_path='../data/train.csv'):
     train_df = pd.read_csv(train_path)
-    test_df = pd.read_csv(test_path)
-    return train_df, test_df
+    return train_df
 
 
 def showdown_df():
@@ -40,7 +39,7 @@ class GestionDonnees:
         self.y_test = y_test
         self.labels = labels
         self.classes = classes
-        self.train_df, self.test_df = open_data()
+        self.train_df = open_data()
 
     def prepocess(self):
         coder = LabelEncoder().fit(self.train_df.etiquette)
