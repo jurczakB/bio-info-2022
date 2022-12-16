@@ -20,7 +20,7 @@ from sklearn.metrics import log_loss
 
 def main():
 
-    usage = " \n Usage : python .\src\main.py method search_HyperParameters (Classifiers Showdown)\
+    usage = " \n Usage : python .\src\main.py (Classifiers Showdown) method search_HyperParameters \
     \n\t method : 1 => Support Vector Classification\
     \n\t method : 2 => Logistic Regression Classification\
     \n\t method : 3 => Neural Network Classification\
@@ -85,13 +85,6 @@ def main():
         scores = gd.display_scores(score)
         print(scores)
 
-        if method == "2": 
-            print("Start : Visualisation des pénalties L1 et L2")
-            visualizer = controller.getVisualizer()
-            visualizer.Visualise_penalty()
-            print("End : Visualisation des pénalties L1 et L2")
-
-
         logloss = classifier.logloss(x_train, y_train)
         print('Logloss score sur les données d"entrainement : ', logloss)
 
@@ -121,31 +114,19 @@ def main():
             svmc.Svm_Classifier_Controller(
                 search_HP, x_train, y_train).getClassifier(),
             lrcc.LogReg_Classifier_Controller(
-                search_HP, x_train, y_train).getClassifier(),]
+                search_HP, x_train, y_train, x_test, y_test).getClassifier(),
+            nncc.Neural_Network_Classifier_Controller(
+                search_HP, x_train, y_train).getClassifier()]
 
         for clf in classifiers:
             clf.train(x_train, y_train)
             name = clf.__class__.__name__
-
-            # print("="*30)
-            # print(name)
-
-            # print('****Results****')
-
             acc = clf.global_accuracy(x_test, y_test)
-            #print("Accuracy: {:.4%}".format(acc))
-
-            # train_predictions = clf.predict_proba(x_test)
             ll = clf.logloss(x_test, y_test)
-            # print("Log Loss: {}".format(ll))
-
             log_entry = gd.showdownPutter(name, acc, ll)
-
-            #results_df = results_df.concat(log_entry)
             results_df = pd.concat([results_df, log_entry])
         print(results_df)
         print("Ending Confrontation des classifieurs : ")
-        # cSV.accuracyPlotter(results_df)
         cSV.subPlotter121(results_df)
 
 
